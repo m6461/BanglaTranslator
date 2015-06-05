@@ -1,0 +1,13 @@
+#!/bin/sh
+echo "Swadesh Translator: Please enter and English word to be translated in Bangla:"
+read word
+
+line=`(grep -i -w -n $word /usr/trans/english | sed -n 's/^\([0-9]*\)[:].*/\1/p')`
+bangla=`(grep -i -w $line /usr/trans/bangla)`
+
+bang=${bangla##*|}
+echo $bang
+
+echo "Press any key"
+read
+

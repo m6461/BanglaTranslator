@@ -1,0 +1,32 @@
+#!/usr/bin/expect
+
+set timeout 3
+#set user test
+#set pass qwerty
+
+spawn telnet localhost 
+
+expect "login: "
+send "test\r"
+
+expect "Password: "
+send "qwerty\r"
+
+
+expect "bash-4.1$"
+send "scp /usr/trans/guitrans test@localhost:/var/gui\r"
+
+expect "test@localhost's passowrd:"
+send "qwerty\r"
+
+expect "bash-4.1$"
+send "exit\r"
+
+spawn /var/./gui
+interact
+
+#spawn su root 
+#interact
+
+spawn rm -f /var/gui 
+interact
